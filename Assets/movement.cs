@@ -15,6 +15,7 @@ public class movement : MonoBehaviour
     bool died = false;
     AudioSource aud;
     public int round = 0;
+    public static int totalCoin = 0;
 
     void RoundChange()
     {
@@ -99,6 +100,23 @@ public class movement : MonoBehaviour
             Debug.Log("Finish");
             round++;
             RoundChange();
+            totalCoinLeft();
+        }
+    }
+    private void totalCoinLeft() //Calculate total number of coins
+    {
+        switch(round)
+        {
+            case 0:
+                totalCoin = 0;
+                break;
+            case 1:
+                totalCoin = 6;
+                break;
+            case 2:
+                totalCoin = 4;
+                break;
+
         }
     }
 }
