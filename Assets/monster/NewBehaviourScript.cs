@@ -24,7 +24,7 @@ public class NewBehaviourScript : MonoBehaviour
         speed /= Vector3.Distance(fire.transform.position, transform.position);
         rgb.velocity = 2 * speed;
         col.isTrigger = true;
-        if ( Vector2.Distance( transform.position , fire.transform.position ) <= 3.5f )
+        if ( Vector2.Distance( transform.position , fire.transform.position ) <= 7f )
         {
             sprite.gameObject.GetComponent<SpriteRenderer>().enabled = true;
             col.isTrigger = false;
