@@ -69,7 +69,7 @@ public class movement : MonoBehaviour
             RoundChange();
             died = false;
             Time.timeScale = 1.0f;
-            
+            coin = 0;
         }
     }
     private void OnCollisionEnter2D(Collision2D coll)
