@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro.SpriteAssetUtilities;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEditor;
 
 public class movement : MonoBehaviour
 {
@@ -17,6 +18,16 @@ public class movement : MonoBehaviour
     public int round = 0;
     public static int totalCoin = 0;
 
+    public void quit()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#elif UNITY_WEBPLAYER
+        Aplication.OpenURL("https://google.com");
+#else
+        Application.Quit();
+#endif
+    }
     void RoundChange()
     {
         switch (round)
@@ -70,6 +81,10 @@ public class movement : MonoBehaviour
             died = false;
             Time.timeScale = 1.0f;
             coin = 0;
+        }
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            quit();
         }
     }
     private void OnCollisionEnter2D(Collision2D coll)
