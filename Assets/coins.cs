@@ -5,16 +5,16 @@ using UnityEngine.UI;
 
 public class coins : MonoBehaviour
 {
-    Text text;
+    Text coinAmount;
     // Start is called before the first frame update
     void Start()
     {
-        text = GetComponent<Text>();
+        coinAmount = GetComponent<Text>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        text.text = "Coin : "+movement.coin;
+        coinAmount.text = $"Coin : {movement.coin} / {movement.totalCoin}";
     }
 }

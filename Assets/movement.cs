@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro.SpriteAssetUtilities;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEditor;
 
 public class movement : MonoBehaviour
 {
@@ -15,7 +16,18 @@ public class movement : MonoBehaviour
     bool died = false;
     AudioSource aud;
     public int round = 0;
+    public static int totalCoin = 0;
 
+    public void quit()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#elif UNITY_WEBPLAYER
+        Aplication.OpenURL("https://google.com");
+#else
+        Application.Quit();
+#endif
+    }
     void RoundChange()
     {
         switch (round)
@@ -68,7 +80,11 @@ public class movement : MonoBehaviour
             RoundChange();
             died = false;
             Time.timeScale = 1.0f;
-            
+            coin = 0;
+        }
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            quit();
         }
     }
     private void OnCollisionEnter2D(Collision2D coll)
@@ -99,6 +115,23 @@ public class movement : MonoBehaviour
             Debug.Log("Finish");
             round++;
             RoundChange();
+            totalCoinLeft();
+        }
+    }
+    private void totalCoinLeft() //Calculate total number of coins
+    {
+        switch(round)
+        {
+            case 0:
+                totalCoin = 0;
+                break;
+            case 1:
+                totalCoin = 6;
+                break;
+            case 2:
+                totalCoin = 4;
+                break;
+
         }
     }
 }
