@@ -7,6 +7,7 @@ TagManager:
   - monster
   - coin
   - trap
+  - background
   layers:
   - Default
   - TransparentFX
